@@ -1,0 +1,153 @@
+@AbapCatalog.sqlViewName: 'ZCACCHGQMIH'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #NOT_REQUIRED    //Must changed
+@EndUserText.label: 'Zuletzt bearb. Instandhaltungsmeldung'
+
+@VDM.viewType: #CONSUMPTION
+
+@Search.searchable: true
+
+define view ZCA_C_LAST_CHG_QUALITY_MESSAGE
+  as select from ZCA_I_LAST_CHG_QUALITY_MESSAGE
+   
+  {
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Meldungsnummer'      
+    key QualityMessageNumber,
+    
+    @Consumption.hidden: true
+    QualityMessageType,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Meldungstext' 
+    QualityMessageShortText,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Status'
+    @Consumption.filter.hidden: true     
+    QualityMessageStatus,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Meldungsstatus (Kurz)'    
+    QualityMessageStatusShortText,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Meldungsstatus (Lang)'    
+    QualityMessageStatusLongText,
+    
+    @UI.hidden: true
+    LastChangedAt,
+    
+    @UI.hidden: true
+    LastChangedBy,
+    
+    @UI.hidden: true
+    TechnicalAsset,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #LOW
+    @UI.hidden: true
+    InternalRealEstateNumber,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #LOW
+    @UI.hidden: true    
+    WorkCenterInternalId, 
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @EndUserText.label: 'Verantw. Arbeitsplatz'
+    WorkCenterId,  
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Werk'    
+    WorkCenterPlant,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Bez. Verantw. Arbeitsplatz'
+    WorkCenterText,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @EndUserText.label: 'Buchungskreis' 
+    RealEstateObjectCompanyCode,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true    
+    @EndUserText.label: 'Bezeichnung d. WirtschEinheit'  
+    RealEstateObjectShortName,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM   
+    @EndUserText.label: 'Nummer d. WirtschEinheit'
+    RealEstateObjectNumber,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true    
+    @EndUserText.label: 'Ort der Wirtschaftseinheit'    
+    RealEstateObjectCityName, 
+    
+    @Consumption.filter.hidden: true
+    @Semantics.text: true
+    @Search.defaultSearchElement: false
+    @Search.fuzzinessThreshold: 0.8 
+    @EndUserText.label: 'Verantw. Team'
+    ResponsibleTeam,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true
+    @EndUserText.label: 'Stellenkennzeichen'      
+    ResponsibleTeamSearch,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true
+    @EndUserText.label: 'Wirtschaftseinheit'      
+    RealEstateObject,
+
+    @EndUserText.label: 'Typ des Immobilienobjekts'
+    @ObjectModel.virtualElement: true
+    @ObjectModel.virtualElementCalculatedBy: 'ZCA_CL_CDS_VE_SPLIT_TECH_ASSET'
+    @ObjectModel.filter.transformedBy: 'ZCA_CL_CDS_VE_SPLIT_TECH_ASSET'
+    cast( ''  as abap.char(2))               as RealEstateObjectType,  
+    
+    @EndUserText.label: 'Nummer Gebäude / Grundstück'
+    @ObjectModel.virtualElement: true
+    @ObjectModel.virtualElementCalculatedBy: 'ZCA_CL_CDS_VE_SPLIT_TECH_ASSET'
+    @ObjectModel.filter.transformedBy: 'ZCA_CL_CDS_VE_SPLIT_TECH_ASSET'
+    cast( ''  as abap.char(4))               as RealEstateObjectBuilding,
+
+    @Consumption.filter.hidden: true
+    @Search.defaultSearchElement: false
+    @Semantics.text: true
+    @EndUserText.label: 'Wirtschaftseinheit (Nr. + Bezeichnung)' 
+    RealEstateObjectNumberAndName    
+                
+  }
