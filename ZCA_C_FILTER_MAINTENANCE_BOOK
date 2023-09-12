@@ -1,0 +1,204 @@
+@AbapCatalog.sqlViewName: 'ZCACFILTERPMBOOK'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #NOT_REQUIRED    //Must changed
+@EndUserText.label: 'Filter für Instandhaltungsbuch'
+
+@VDM.viewType: #CONSUMPTION
+
+@Search.searchable: true
+
+define view ZCA_C_FILTER_MAINTENANCE_BOOK
+  as select from ZCA_TF_FILTER_MAINTENANCE_BOOK(p_client: $session.client)
+    
+  {
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Auftragsnummer'      
+    key MaintenanceOrderNumber,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Auftragsart'
+    MaintenanceOrderType,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Auftragsstext' 
+    MaintenanceOrderShortText,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Status'
+    @Consumption.filter.hidden: true     
+    MaintenanceOrderStatus,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Auftragsstatus (Kurz)'    
+    MaintenanceOrderStatusShort,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Autragsstatus (Lang)'    
+    MaintenanceOrderStatusLong,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Meldungsnummer'      
+    QualityMessageNumber,
+    
+    @Consumption.hidden: true
+    QualityMessageType,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Meldungstext' 
+    QualityMessageShortText,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Status'
+    @Consumption.filter.hidden: true     
+    QualityMessageStatus,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Meldungsstatus (Kurz)'    
+    QualityMessageStatusShortText,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Meldungsstatus (Lang)'    
+    QualityMessageStatusLongText,
+    
+    @UI.hidden: true
+    LastChangedAt,
+    
+    @UI.hidden: true
+    LastChangedBy,
+    
+    @UI.hidden: true
+    TechnicalAsset,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #LOW
+    @UI.hidden: true
+    InternalRealEstateNumber,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #LOW
+    @UI.hidden: true    
+    WorkCenterInternalId,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @EndUserText.label: 'Verantw. Arbeitsplatz'
+    WorkCenterId,  
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Werk'    
+    WorkCenterPlant,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'Bez. Verantw. Arbeitsplatz'
+    WorkCenterText,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @EndUserText.label: 'Buchungskreis' 
+    RealEstateObjectCompanyCode,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true    
+    @EndUserText.label: 'Bezeichnung d. WirtschEinheit'  
+    RealEstateObjectShortName,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM   
+    @EndUserText.label: 'Nummer d. WirtschEinheit'
+    RealEstateObjectNumber,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true    
+    @EndUserText.label: 'Ort der Wirtschaftseinheit'    
+    RealEstateObjectCityName,
+    
+    @Consumption.filter.hidden: true
+    @Semantics.text: true
+    @Search.defaultSearchElement: false
+    @Search.fuzzinessThreshold: 0.8 
+    @EndUserText.label: 'Verantw. Team'
+    ResponsibleTeam,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true
+    @EndUserText.label: 'Stellenkennzeichen'      
+    ResponsibleTeamSearch,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true
+    @EndUserText.label: 'Wirtschaftseinheit'      
+    RealEstateObject,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true
+    @EndUserText.label: 'Typ des Immobilienobjekts'
+    RealEstateObjectType,  
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true    
+    @EndUserText.label: 'Nummer Gebäude / Grundstück'
+    RealEstateObjectBuilding,
+    
+    @Consumption.filter.hidden: true
+    @Search.defaultSearchElement: false
+    @Semantics.text: true
+    @EndUserText.label: 'Wirtschaftseinheit (Nr. + Bezeichnung)' 
+    RealEstateObjectNumberAndName,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'PSP-Element'  
+    WBSElement,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM    
+    @EndUserText.label: 'PSP-Element (Kurztext)'
+    WBSElementDescription    
+                
+  }
