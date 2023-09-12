@@ -1,0 +1,352 @@
+{
+    "_version": "1.17.0",
+    "sap.app": {
+        "id": "customer.zca.omc.zcamaintenancebook",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "tags": {
+            "keywords": []
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZCA_MAINTENANCE_BOOK_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZCA_MAINTENANCE_BOOK_ANNO_MDL",
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZCA_MAINTENANCE_BOOK_ANNO_MDL": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZCA_MAINTENANCE_BOOK_ANNO_MDL',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZCA_MAINTENANCE_BOOK_ANNO_MDL.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "offline": false,
+        "sourceTemplate": {
+            "id": "OVP.smartovptemplate",
+            "version": "1.41.1"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "customer-zca-omc-zcamaintenance-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "instandhaltungsbuch",
+                    "action": "start",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": []
+        },
+        "dependencies": {
+            "minUI5Version": "1.71.33",
+            "libs": {
+                "sap.ovp": {}
+            },
+            "components": {}
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties",
+                "preload": false
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "mainService": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline"
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.ovp.app.Main": {
+                        "controllerName": "customer.zca.omc.zcamaintenancebook.ext.controller.OverViewPageExt"
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "analytical"
+    },
+    "sap.ovp": {
+        "globalFilterModel": "mainService",
+        "globalFilterEntityType": "ZCA_C_FILTER_MAINTENANCE_BOOKType",
+        "containerLayout": "resizable",
+        "enableLiveFilter": true,
+        "considerAnalyticalParameters": false,
+        "cards": {
+            "card01": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.list",
+                "settings": {
+                    "title": "{{title1}}",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#Qualifier1",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Qualifier1",
+                    "addODataSelect": true,
+                    "listType": "extended",
+                    "listFlavor": "standard",
+                    "entitySet": "ZCA_C_RealEstateObjektByOMT",
+                    "defaultSpan": {
+                        "rows": 5,
+                        "cols": 1,
+                        "showOnlyHeader": false
+                    }
+                }
+            },
+            "card02": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.list",
+                "settings": {
+                    "title": "{{title2}}",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#Qualifier2",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Qualifier2",
+                    "addODataSelect": true,
+                    "listType": "extended",
+                    "listFlavor": "standard",
+                    "entitySet": "ZCA_C_ALL_QUALITY_MESSAGE",
+                    "staticParameters": {
+                        "sap-ui-tech-hint": "GUI"
+                      },
+                    "defaultSpan": {
+                        "rows": 5,
+                        "cols": 1,
+                        "showOnlyHeader": false
+                    }
+                }
+            },
+            "card03": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.list",
+                "settings": {
+                    "title": "{{title3}}",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#Qualifier3",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Qualifier3",
+                    "addODataSelect": true,
+                    "listType": "extended",
+                    "listFlavor": "standard",
+                    "entitySet": "ZCA_C_LAST_CHG_QUALITY_MESSAGE",
+                    "staticParameters": {
+                        "sap-ui-tech-hint": "GUI"
+                      },
+                    "defaultSpan": {
+                        "rows": 5,
+                        "cols": 1,
+                        "showOnlyHeader": false
+                    }
+                }
+            },
+            "card04": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.list",
+                "settings": {
+                    "title": "{{title4}}",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#Qualifier4",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Qualifier4",
+                    "addODataSelect": true,
+                    "listType": "extended",
+                    "listFlavor": "standard",
+                    "entitySet": "ZCA_C_ALL_MAINTENANCE_ORDER",
+                    "staticParameters": {
+                        "sap-ui-tech-hint": "GUI"
+                      },
+                    "defaultSpan": {
+                        "rows": 5,
+                        "cols": 1,
+                        "showOnlyHeader": false
+                    }
+                }
+            },
+            "card05": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.list",
+                "settings": {
+                    "title": "{{title5}}",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#Qualifier5",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Qualifier5",
+                    "addODataSelect": true,
+                    "listType": "extended",
+                    "listFlavor": "standard",
+                    "entitySet": "ZCA_C_LAST_CHG_MAINT_ORDER",
+                    "staticParameters": {
+                        "sap-ui-tech-hint": "GUI"
+                      },
+                    "defaultSpan": {
+                        "rows": 5,
+                        "cols": 1,
+                        "showOnlyHeader": false
+                    }
+                }
+            },
+            "quickActions": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.linklist",
+                "settings": {
+                    "title": "{{quickActions_title}}",
+                    "listFlavor": "standard",
+                    "staticContent": [
+                        {
+                            "title": "{{linkTitle1}}",
+                            "imageUri": "sap-icon://show-edit",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintenanceNotification",
+                            "action": "displayList",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "{{linkTitle4}}",
+                            "imageUri": "sap-icon://create",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintenanceNotification",
+                            "action": "create",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "{{linkTitle3}}",
+                            "imageUri": "sap-icon://request",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintenanceNotification",
+                            "action": "change",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "{{linkTitle2}}",
+                            "imageUri": "sap-icon://show-edit",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintenanceNotification",
+                            "action": "display",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "{{linkTitle5}}",
+                            "imageUri": "sap-icon://show-edit",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintenanceOrder",
+                            "action": "displayList",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "{{linkTitle8}}",
+                            "imageUri": "sap-icon://create",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintenanceOrder",
+                            "action": "create",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "{{linkTitle7}}",
+                            "imageUri": "sap-icon://request",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintenanceOrder",
+                            "action": "change",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "{{linkTitle6}}",
+                            "imageUri": "sap-icon://show-edit",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintenanceOrder",
+                            "action": "display",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "{{linkTitle9}}",
+                            "imageUri": "sap-icon://create",
+                            "imageAltText": "Test",
+                            "semanticObject": "MaintOrderConfirmation",
+                            "action": "create",
+                            "staticParameters": {
+                                "sap-ui-tech-hint": "GUI"
+                            },
+                            "openInNewWindow": true
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

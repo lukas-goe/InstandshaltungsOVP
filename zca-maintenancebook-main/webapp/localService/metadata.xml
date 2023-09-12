@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://paifv3.sap.bundesimmobilien.intern:9071/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LVCLNT100')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://paifv3.sap.bundesimmobilien.intern:9071/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LVCLNT100')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://paifv3.sap.bundesimmobilien.intern:9071/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LVCLNT100')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://paifv3.sap.bundesimmobilien.intern:9071/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LVCLNT100')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://paifv3.sap.bundesimmobilien.intern:9071/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LVCLNT100')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZCA_ASSET_BOOK_SRV" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZCA_C_FAV_TECHNICAL_ASSETType" sap:label="Favoritenliste techn. Anlagen" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EquipmentNumber"/>
+                </Key>
+                <Property Name="EquipmentNumber" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Nr. vom Equipment" sap:quickinfo="Equipmentnummer"/>
+                <Property Name="EquipmentType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Typ vom Equipment" sap:quickinfo="Equipmenttyp"/>
+                <Property Name="EquipmentTypeShortName" Type="Edm.String" MaxLength="30" sap:label="EquipmenttypBez" sap:quickinfo="Bezeichnung des Equipmenttyps"/>
+                <Property Name="ObjectTypeShortName" Type="Edm.String" MaxLength="20" sap:label="Text Objektart" sap:quickinfo="Text für die Objektart"/>
+                <Property Name="RealEstateObjectCityName" Type="Edm.String" MaxLength="40" sap:label="Ort der Wirtschaftseinheit" sap:quickinfo="Ort"/>
+                <Property Name="ObjectType" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="DIN-Klasse" sap:quickinfo="Art des technischen Objekts"/>
+                <Property Name="LastChangedAt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Geändert am" sap:quickinfo="Datum der letzten Änderung"/>
+                <Property Name="LastChangedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Geändert von" sap:quickinfo="Name des Sachbearbeiters, der das Objekt geändert hat."/>
+                <Property Name="EquipmentShortName" Type="Edm.String" MaxLength="40" sap:label="Bez. vom Equipment" sap:quickinfo="Bezeichnung technisches Objekt"/>
+                <Property Name="TechnicalAsset" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Technischer Platz"/>
+                <Property Name="InternalRealEstateNumber" Type="Edm.String" MaxLength="13" sap:display-format="UpperCase" sap:label="RE-Schlüssel" sap:quickinfo="Interner Schlüssel des Immobilienobjekts"/>
+                <Property Name="RealEstateObjectCompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Buchungskreis"/>
+                <Property Name="RealEstateObjectShortName" Type="Edm.String" MaxLength="60" sap:label="Bez. der Wirtschaftseinheit" sap:quickinfo="Bezeichnung der Wirtschaftseinheit"/>
+                <Property Name="RealEstateObjectNumber" Type="Edm.String" MaxLength="13" sap:label="Nr. der Wirtschaftseinheit"/>
+                <Property Name="ResponsibleTeam" Type="Edm.String" MaxLength="7" sap:label="Verantw. Team"/>
+                <Property Name="ResponsibleTeamSearch" Type="Edm.String" MaxLength="12" sap:label="Stellenkennzeichen" sap:quickinfo="Objektkürzel"/>
+                <Property Name="RealEstateObjectType" Type="Edm.String" MaxLength="2" sap:label="Typ der Wirtschaftseinheit" sap:sortable="false"/>
+                <Property Name="RealEstateObjectBuilding" Type="Edm.String" MaxLength="4" sap:label="Gebäude der Wirtschaftseinheit" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ZCA_C_RealEstateObjektByOMTType" sap:label="User/Wirtschaftseinheit für OMT" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="InternalRealEstateNumber"/>
+                </Key>
+                <Property Name="InternalRealEstateNumber" Type="Edm.String" Nullable="false" MaxLength="13" sap:display-format="UpperCase" sap:label="Int. Schlüssel" sap:quickinfo="Interner Schlüssel des Immobilienobjekts"/>
+                <Property Name="RealEstateObjectCompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Buchungskreis"/>
+                <Property Name="RealEstateObjectNumber" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Wirtschaftseinheit" sap:quickinfo="Nummer der Wirtschaftseinheit"/>
+                <Property Name="RealEstateObjectIdentification" Type="Edm.String" MaxLength="13" sap:label="Wirtschaftseinheit"/>
+                <Property Name="RealEstateObjectShortName" Type="Edm.String" MaxLength="60" sap:label="Bez. Wirtschaftseinheit" sap:quickinfo="Bezeichnung der Wirtschaftseinheit"/>
+                <Property Name="ResponsibleTeam" Type="Edm.String" MaxLength="7" sap:label="Verantw. Team"/>
+                <Property Name="ResponsibleTeamSearch" Type="Edm.String" MaxLength="12" sap:label="Stellenkennzeichen" sap:quickinfo="Objektkürzel"/>
+                <Property Name="RealEstateObjectCityName" Type="Edm.String" MaxLength="40" sap:label="Ort der Wirtschaftseinheit" sap:quickinfo="Ort"/>
+            </EntityType>
+            <EntityType Name="ZCA_C_TECHNICAL_ASSETType" sap:label="Zuletzt bearbeitete techn. Anlagen" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EquipmentNumber"/>
+                </Key>
+                <Property Name="EquipmentNumber" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Nummer des Equipments" sap:quickinfo="Equipmentnummer"/>
+                <Property Name="EquipmentType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Typ des Equipments" sap:quickinfo="Equipmenttyp"/>
+                <Property Name="EquipmentTypeShortName" Type="Edm.String" MaxLength="30" sap:label="EquipmenttypBez" sap:quickinfo="Bezeichnung des Equipmenttyps"/>
+                <Property Name="ObjectTypeShortName" Type="Edm.String" MaxLength="20" sap:label="Text Objektart" sap:quickinfo="Text für die Objektart"/>
+                <Property Name="RealEstateObjectCityName" Type="Edm.String" MaxLength="40" sap:label="Ort der Wirtschaftseinheit" sap:quickinfo="Ort"/>
+                <Property Name="ObjectType" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="DIN-Klasse" sap:quickinfo="Art des technischen Objekts"/>
+                <Property Name="LastChangedAt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Geändert am" sap:quickinfo="Datum der letzten Änderung"/>
+                <Property Name="LastChangedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Geändert von" sap:quickinfo="Name des Sachbearbeiters, der das Objekt geändert hat."/>
+                <Property Name="EquipmentShortName" Type="Edm.String" MaxLength="40" sap:label="Bezeichnung des Equipments" sap:quickinfo="Bezeichnung technisches Objekt"/>
+                <Property Name="TechnicalAsset" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Technischer Platz"/>
+                <Property Name="InternalRealEstateNumber" Type="Edm.String" MaxLength="13" sap:display-format="UpperCase" sap:label="RE-Schlüssel" sap:quickinfo="Interner Schlüssel des Immobilienobjekts"/>
+                <Property Name="RealEstateObjectCompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Buchungskreis"/>
+                <Property Name="RealEstateObjectShortName" Type="Edm.String" MaxLength="60" sap:label="Bezeichnung d. WirtschEinheit" sap:quickinfo="Bezeichnung der Wirtschaftseinheit"/>
+                <Property Name="RealEstateObjectNumber" Type="Edm.String" MaxLength="13" sap:label="Nummer d. WirtschEinheit"/>
+                <Property Name="ResponsibleTeam" Type="Edm.String" MaxLength="7" sap:label="Verantw. Team"/>
+                <Property Name="ResponsibleTeamSearch" Type="Edm.String" MaxLength="12" sap:label="Stellenkennzeichen" sap:quickinfo="Objektkürzel"/>
+                <Property Name="RealEstateObjectType" Type="Edm.String" MaxLength="2" sap:label="Typ des Immobilienobjekts" sap:sortable="false"/>
+                <Property Name="RealEstateObjectBuilding" Type="Edm.String" MaxLength="4" sap:label="Nummer Gebäude / Grundstück" sap:sortable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZCA_ASSET_BOOK_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZCA_C_FAV_TECHNICAL_ASSET" EntityType="ZCA_ASSET_BOOK_SRV.ZCA_C_FAV_TECHNICAL_ASSETType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZCA_C_RealEstateObjektByOMT" EntityType="ZCA_ASSET_BOOK_SRV.ZCA_C_RealEstateObjektByOMTType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZCA_C_TECHNICAL_ASSET" EntityType="ZCA_ASSET_BOOK_SRV.ZCA_C_TECHNICAL_ASSETType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotations Target="ZCA_ASSET_BOOK_SRV.ZCA_ASSET_BOOK_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZCA_ASSET_BOOK_SRV.ZCA_ASSET_BOOK_SRV_Entities/ZCA_C_FAV_TECHNICAL_ASSET" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>RealEstateObjectType</PropertyPath>
+                                <PropertyPath>RealEstateObjectBuilding</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZCA_ASSET_BOOK_SRV.ZCA_ASSET_BOOK_SRV_Entities/ZCA_C_TECHNICAL_ASSET" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>RealEstateObjectType</PropertyPath>
+                                <PropertyPath>RealEstateObjectBuilding</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://paifv3.sap.bundesimmobilien.intern:9071/sap/opu/odata/sap/ZCA_ASSET_BOOK_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://paifv3.sap.bundesimmobilien.intern:9071/sap/opu/odata/sap/ZCA_ASSET_BOOK_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
