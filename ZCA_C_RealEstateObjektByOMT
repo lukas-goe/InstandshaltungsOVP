@@ -1,0 +1,78 @@
+@AbapCatalog.sqlViewName: 'ZCACUSRATBUSOMT'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #NOT_REQUIRED    //Must changed
+@EndUserText.label: 'User/Wirtschaftseinheit für OMT'
+
+@VDM.viewType: #CONSUMPTION
+
+@Search.searchable: true
+@ClientHandling.algorithm: #SESSION_VARIABLE
+
+@ObjectModel.usageType.dataClass: #MASTER
+@ObjectModel.usageType.serviceQuality: #A
+@ObjectModel.usageType.sizeCategory: #M
+@ObjectModel.resultSet.sizeCategory: #XS
+
+define view ZCA_C_RealEstateObjektByOMT   
+    as select from ZCA_I_REALESTATEOBJEKTBYOMT
+   
+  {
+ 
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #LOW
+    @UI.identification: {position: 10, label: 'Int. Schlüssel'}
+    @UI.lineItem: {position: 10, importance: #HIGH }
+    @EndUserText.label: 'Int. Schlüssel'
+    @ObjectModel.text.element: ['REObjectIdentification']      
+    key InternalRealEstateNumber,
+    
+    @Consumption.hidden: false
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.5
+    @Search.ranking: #HIGH
+    @EndUserText.label: 'Buchungskreis' 
+    RealEstateObjectCompanyCode,
+  
+    @UI.hidden: true
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.6
+    @Search.ranking: #HIGH   
+    RealEstateObjectNumber,
+    
+    @Consumption.filter.hidden: true
+    @Search.defaultSearchElement: false    
+    @EndUserText.label: 'Wirtschaftseinheit'
+    @Semantics.text: true      
+    RealEstateObjectIdentification,
+   
+    @Consumption.filter.hidden: true
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @EndUserText.label: 'Bez. Wirtschaftseinheit'              
+    RealEstateObjectShortName,
+    
+    @Consumption.filter.hidden: true
+    @Semantics.text: true
+    @Search.defaultSearchElement: false
+    @Search.fuzzinessThreshold: 0.8 
+    @EndUserText.label: 'Verantw. Team'
+    ResponsibleTeam,
+
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true
+    @EndUserText.label: 'Stellenkennzeichen'    
+    ResponsibleTeamSearch,
+    
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    @Search.ranking: #MEDIUM
+    @Semantics.text: true    
+    @EndUserText.label: 'Ort der Wirtschaftseinheit'        
+    RealEstateObjectCityName
+           
+  }
